@@ -48,13 +48,13 @@ public class IngredientController {
             IngredientDTO dto = new IngredientDTO(ingredient.getId(), ingredient.getName(),
                     ingredient.getPrice(), ingredient.getCategory());
             return Response.ok(dto).build();
-        } catch (com.example.exception.IngredientNotFoundException e) {
+        } catch (com.example.rest_service.exception.IngredientNotFoundException e) {
             return Response.status(Response.Status.NOT_FOUND)
-                    .entity(new com.example.dto.ErrorResponse(404, e.getMessage()))
+                    .entity(new com.example.rest_service.dto.ErrorResponse(404, e.getMessage()))
                     .build();
         } catch (SQLException e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                    .entity(new com.example.dto.ErrorResponse(500, e.getMessage()))
+                    .entity(new com.example.rest_service.dto.ErrorResponse(500, e.getMessage()))
                     .build();
         }
     }
@@ -67,7 +67,7 @@ public class IngredientController {
         try {
             if (at == null || at.isEmpty() || unit == null || unit.isEmpty()) {
                 return Response.status(Response.Status.BAD_REQUEST)
-                        .entity(new com.example.dto.ErrorResponse(400,
+                        .entity(new com.example.rest_service.dto.ErrorResponse(400,
                                 "Either mandatory query parameter `at` or `unit` is not provided."))
                         .build();
             }
@@ -81,18 +81,18 @@ public class IngredientController {
             StockValueDTO dto = new StockValueDTO(unit, stockValue);
             return Response.ok(dto).build();
 
-        } catch (com.example.exception.IngredientNotFoundException e) {
+        } catch (com.example.rest_service.exception.IngredientNotFoundException e) {
             return Response.status(Response.Status.NOT_FOUND)
-                    .entity(new com.example.dto.ErrorResponse(404, e.getMessage()))
+                    .entity(new com.example.rest_service.dto.ErrorResponse(404, e.getMessage()))
                     .build();
         } catch (java.time.format.DateTimeParseException e) {
             return Response.status(Response.Status.BAD_REQUEST)
-                    .entity(new com.example.dto.ErrorResponse(400,
+                    .entity(new com.example.rest_service.dto.ErrorResponse(400,
                             "Invalid date format for parameter 'at'. Use ISO-8601 format."))
                     .build();
         } catch (SQLException e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                    .entity(new com.example.dto.ErrorResponse(500, e.getMessage()))
+                    .entity(new com.example.rest_service.dto.ErrorResponse(500, e.getMessage()))
                     .build();
         }
     }

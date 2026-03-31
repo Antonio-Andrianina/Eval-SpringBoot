@@ -18,6 +18,13 @@ public class GlobalExceptionHandler implements ExceptionMapper<Exception> {
                     .build();
         }
 
+        if (exception instanceof DishAlreadyExistsException) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(new ErrorResponse(400, exception.getMessage()))
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+        }
+
         if (exception instanceof IngredientNotFoundException) {
             return Response.status(Response.Status.NOT_FOUND)
                     .entity(new ErrorResponse(404, exception.getMessage()))
@@ -32,6 +39,14 @@ public class GlobalExceptionHandler implements ExceptionMapper<Exception> {
                     .build();
         }
 
+        if (exception instanceof java.sql.SQLException) {
+            exception.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorResponse(500, "Database error: " + exception.getMessage()))
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+        }
+        
         exception.printStackTrace();
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity(new ErrorResponse(500, "Internal server error: " + exception.getMessage()))

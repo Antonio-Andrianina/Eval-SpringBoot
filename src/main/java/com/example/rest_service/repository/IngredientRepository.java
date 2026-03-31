@@ -1,11 +1,11 @@
 package com.example.rest_service.repository;
 
-import com.example.config.DataSource;
-import com.example.entity.CategoryEnum;
-import com.example.entity.Ingredient;
-import com.example.entity.MovementType;
-import com.example.entity.StockMovement;
-import com.example.exception.IngredientNotFoundException;
+import com.example.rest_service.config.DataSource;
+import com.example.rest_service.entity.CategoryEnum;
+import com.example.rest_service.entity.Ingredient;
+import com.example.rest_service.entity.MovementType;
+import com.example.rest_service.entity.StockMovement;
+import com.example.rest_service.exception.IngredientNotFoundException;
 
 import java.sql.*;
 import java.time.Instant;
@@ -95,7 +95,6 @@ public class IngredientRepository {
 
             ingredient.setId(ingredientId);
 
-            // Save stock movements
             if (ingredient.getStockMovements() != null && !ingredient.getStockMovements().isEmpty()) {
                 String movementSql = "INSERT INTO StockMovement (id_ingredient, quantity, type, unit, creation_datetime) " +
                         "VALUES (?, ?, ?, ?, ?) ON CONFLICT (id) DO NOTHING";

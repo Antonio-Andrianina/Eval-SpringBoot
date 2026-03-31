@@ -1,7 +1,7 @@
 package com.example.rest_service.repository;
 
-import com.example.config.DataSource;
-import com.example.entity.Product;
+import com.example.rest_service.config.DataSource;
+import com.example.rest_service.entity.Product;
 
 import java.sql.*;
 import java.time.Instant;

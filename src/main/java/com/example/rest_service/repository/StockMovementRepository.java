@@ -1,8 +1,8 @@
 package com.example.rest_service.repository;
 
-import com.example.config.DataSource;
-import com.example.entity.MovementType;
-import com.example.entity.StockMovement;
+import com.example.rest_service.config.DataSource;
+import com.example.rest_service.entity.MovementType;
+import com.example.rest_service.entity.StockMovement;
 
 import java.sql.*;
 import java.time.Instant;

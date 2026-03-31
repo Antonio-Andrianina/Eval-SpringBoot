@@ -1,6 +1,6 @@
 package com.example.rest_service.dto;
 
-import com.example.entity.CategoryEnum;
+import com.example.rest_service.entity.CategoryEnum;
 
 public class IngredientDTO {
     private Integer id;
@@ -17,7 +17,6 @@ public class IngredientDTO {
         this.category = category;
     }
 
-    // Getters and Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
